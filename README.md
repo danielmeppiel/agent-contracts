@@ -15,7 +15,7 @@ Contracts compose into an agentic software factory; a gate at merge reads
 Receipts against your rules.
 
 **Status: draft 0.1 — an invitation, not a standard.** It is generalised from
-one implementation and will change. Read it, break it, tell us what's missing.
+one implementation and will change. Read it, break it, say what's missing.
 
 ```mermaid
 flowchart LR
