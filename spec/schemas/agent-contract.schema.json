@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/danielmeppiel/agent-contracts/main/spec/schemas/agent-contract.schema.json",
+  "title": "Agent Contract front matter (format draft 0.1)",
+  "description": "YAML front matter of a <name>.contract.md file, as accepted by APMX 0.8.0. Draft; not stable. The Markdown body (the role) is not covered by this schema and must be non-empty.",
+  "type": "object",
+  "required": [
+    "produces",
+    "verify"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "needs": {
+      "description": "Inputs: caller-supplied files (the assignment) or handoffs produced by another contract in the factory. May be omitted or empty.",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/path"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/path"
+          },
+          "maxItems": 16,
+          "uniqueItems": true
+        }
+      ]
+    },
+    "produces": {
+      "description": "Deliverables: files the contract must deliver. Paths must not collide or overlap.",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/path"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/path"
+          },
+          "minItems": 1,
+          "maxItems": 16,
+          "uniqueItems": true
+        }
+      ]
+    },
+    "imports": {
+      "description": "Dependencies: names of skills declared in the package's dependency manifest. Names only; versions are pinned by the package lock.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_./-]*$",
+        "not": {
+          "anyOf": [
+            {
+              "pattern": "^apm_modules/"
+            },
+            {
+              "pattern": "(^|/)\\.\\.?(/|$)"
+            },
+            {
+              "pattern": "//"
+            },
+            {
+              "pattern": "/$"
+            }
+          ]
+        },
+        "description": "A skill name, not a storage path or version: no '.' or '..' segments, no apm_modules/ prefix."
+      },
+      "maxItems": 256,
+      "uniqueItems": true
+    },
+    "budget": {
+      "description": "Budget: attempts and wall-clock seconds shared by all attempts and checks. Without a budget, one attempt.",
+      "type": "object",
+      "required": [
+        "max_attempts",
+        "max_seconds"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "max_attempts": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 16
+        },
+        "max_seconds": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 86400
+        }
+      }
+    },
+    "verify": {
+      "description": "Checks: check name to command. Exit 0 passes, exit 1 rejects, any other exit is an operational failure.",
+      "type": "object",
+      "minProperties": 1,
+      "maxProperties": 8,
+      "propertyNames": {
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$"
+      },
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "\\S"
+      }
+    }
+  },
+  "$defs": {
+    "path": {
+      "description": "A fixed relative file path: no globs, no absolute path, no '.' or '..' segments, no leading or trailing whitespace, and no .git, .apm or apm_modules segment (case-insensitive; not fully expressible here).",
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_./-]([A-Za-z0-9_./ -]*[A-Za-z0-9_./-])?$",
+      "not": {
+        "anyOf": [
+          {
+            "pattern": "^/"
+          },
+          {
+            "pattern": "(^|/)\\.\\.?(/|$)"
+          },
+          {
+            "pattern": "(^|/)(\\.git|\\.apm|apm_modules)(/|$)"
+          },
+          {
+            "pattern": "//"
+          },
+          {
+            "pattern": "/$"
+          }
+        ]
+      }
+    }
+  }
+}

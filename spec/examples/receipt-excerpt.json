@@ -1,0 +1,304 @@
+{
+ "_note": "Decoded, trimmed excerpt of a real APMX 0.8.0 receipt (receipt.intoto.jsonl, 13 lines: 1 SLSA Provenance v1, 11 in-toto Test Result v0.1, 1 CycloneDX 1.5). Local run, unsigned (signatures: []). Factory danielmeppiel/apmx-demo-factory#v2.0.0 run locally on a demo project (wire-transfer holds), Copilot CLI harness, 2026-11-04. Digests truncated with …; omitted elements marked with …. Not a normative example. Keys reordered for reading; the canonical form sorts keys.",
+ "envelope_line_1": {
+  "payload": "eyJfdHlwZSI6Imh0dHBzOi8v…",
+  "payloadType": "application/vnd.in-toto+json",
+  "signatures": []
+ },
+ "line_1_slsa_provenance": {
+  "_type": "https://in-toto.io/Statement/v1",
+  "subject": [
+   {
+    "digest": {
+     "sha256": "43b2c24b3e88…"
+    },
+    "name": "docs/wires.md"
+   },
+   {
+    "digest": {
+     "sha256": "4928a9ef3703…"
+    },
+    "name": "src/payments/approvals.py"
+   },
+   {
+    "digest": {
+     "sha256": "9dacbe9499af…"
+    },
+    "name": "src/payments/wires.py"
+   },
+   {
+    "digest": {
+     "sha256": "b8f31a29f29a…"
+    },
+    "name": "tests/test_wire_holds.py"
+   }
+  ],
+  "predicateType": "https://slsa.dev/provenance/v1",
+  "predicate": {
+   "buildDefinition": {
+    "buildType": "https://github.com/danielmeppiel/apmx/build/factory/v2",
+    "externalParameters": {
+     "factory": {
+      "commit": "962df453559f…",
+      "definition": {
+       "sha256": "f6c2d2401f3d…"
+      },
+      "package": "danielmeppiel/apmx-demo-factory#v2.0.0"
+     }
+    },
+    "internalParameters": {
+     "stages": [
+      {
+       "attempts": 1,
+       "budget": {
+        "max_attempts": 3,
+        "max_seconds": 600
+       },
+       "checks": [
+        {
+         "command": "python3 -I -B checks/acceptance.py changes.diff",
+         "name": "acceptance-scenarios"
+        },
+        {
+         "command": "python3 -I -B checks/regression.py changes.diff",
+         "name": "regression-suite"
+        },
+        "… 3 more"
+       ],
+       "contract": "build",
+       "contractSha256": "0a3c8ad0d6a2…",
+       "harness": "copilot",
+       "harnessVersion": "1.0.102-0.unstable.r40949665530.gab1eef5.",
+       "observedModels": [
+        "gpt-6.1-sol"
+       ],
+       "outputs": [
+        {
+         "digest": {
+          "sha256": "df69235989f0…"
+         },
+         "name": "changes.diff"
+        },
+        {
+         "digest": {
+          "sha256": "703eb395f3a5…"
+         },
+         "name": "implementation.md"
+        }
+       ],
+       "requestedModel": null
+      },
+      "… 4 more stages (planning, specification, documentation, review)"
+     ]
+    },
+    "resolvedDependencies": [
+     {
+      "annotations": {
+       "apmx.role": "base",
+       "created": [
+        "tests/test_wire_holds.py"
+       ],
+       "deleted": []
+      },
+      "digest": {
+       "gitTree": "1f729431d9fe…"
+      },
+      "name": "base"
+     },
+     {
+      "annotations": {
+       "apmx.role": "before-image"
+      },
+      "digest": {
+       "sha256": "d261c4474d0d…"
+      },
+      "name": "docs/wires.md"
+     },
+     "… 2 more before-images",
+     {
+      "annotations": {
+       "apmx.role": "input",
+       "evidence": "evidence/sha256/ea0a48f3e9fb…"
+      },
+      "digest": {
+       "sha256": "ea0a48f3e9fb…"
+      },
+      "name": "request.md"
+     },
+     {
+      "annotations": {
+       "apmx.role": "capability",
+       "bomRef": "pkg:generic/agents@46891e7e60da…",
+       "commit": "46891e7e60da…",
+       "lockIdentity": "wshobson/agents/plugins/python-development/skills/python-testing-patterns",
+       "packageHash": "sha256:df2784d5531c…",
+       "registryHash": null,
+       "resources": [
+        {
+         "path": "references/advanced-patterns.md",
+         "sha256": "f560ee8b3cff…",
+         "size": 9454
+        },
+        "…"
+       ]
+      },
+      "digest": {
+       "sha256": "a1020718f316…"
+      },
+      "name": "python-testing-patterns",
+      "uri": "pkg:generic/agents@46891e7e60da…"
+     },
+     {
+      "annotations": {
+       "apmx.role": "apm-manifest"
+      },
+      "content": "bmFtZTogZmVhdHVy… (base64, inline)",
+      "digest": {
+       "sha256": "8e4ffcf522f4…"
+      },
+      "name": "apm.yml"
+     },
+     {
+      "annotations": {
+       "apmx.role": "apm-lock"
+      },
+      "content": "bG9ja2ZpbGVfdmVy… (base64, inline)",
+      "digest": {
+       "sha256": "aff1f42db048…"
+      },
+      "name": "apm.lock.yaml"
+     },
+     {
+      "annotations": {
+       "apmx.role": "apm-imports-manifest"
+      },
+      "content": "bmFtZTogY2hlY2tv… (base64, inline)",
+      "digest": {
+       "sha256": "5d2b223bc5c4…"
+      },
+      "name": "imports-apm.yml"
+     }
+    ]
+   },
+   "runDetails": {
+    "builder": {
+     "id": "https://github.com/danielmeppiel/apmx",
+     "version": {
+      "apm": "0.33.0",
+      "apmx": "0.8.0"
+     }
+    },
+    "byproducts": [
+     {
+      "annotations": {
+       "apmx.role": "definition",
+       "evidence": "evidence/sha256/f6c2d2401f3d…"
+      },
+      "digest": {
+       "sha256": "f6c2d2401f3d…"
+      },
+      "name": "definition.json"
+     },
+     {
+      "annotations": {
+       "apmx.role": "transcript",
+       "evidence": "evidence/sha256/08acd086d38b…"
+      },
+      "digest": {
+       "sha256": "08acd086d38b…"
+      },
+      "name": "transcripts/20261104T013320Z-abf4b818c8bf.log"
+     },
+     "… 4 more transcripts"
+    ],
+    "metadata": {
+     "finishedOn": "2026-11-04T01:37:24.445637+00:00",
+     "invocationId": "20261104T013317Z-ee7f41cc62f3",
+     "startedOn": "2026-11-04T01:33:20.158528+00:00"
+    }
+   }
+  }
+ },
+ "line_4_test_result": {
+  "_type": "https://in-toto.io/Statement/v1",
+  "subject": [
+   {
+    "digest": {
+     "sha256": "43b2c24b3e88…"
+    },
+    "name": "docs/wires.md"
+   },
+   "… same 4 subjects as line 1"
+  ],
+  "predicateType": "https://in-toto.io/attestation/test-result/v0.1",
+  "predicate": {
+   "configuration": [
+    {
+     "annotations": {
+      "check": "acceptance-scenarios",
+      "command": "python3 -I -B checks/acceptance.py changes.diff",
+      "factoryDefinition": "sha256:f6c2d2401f3d…",
+      "scope": "Observed checks over the reconstructed candidate files; not a correctness guarantee.",
+      "stage": "build"
+     },
+     "digest": {
+      "sha256": "5ef6544c0799…"
+     },
+     "name": "checks/acceptance.py"
+    }
+   ],
+   "passedTests": [
+    "Just below $10,000 to a new payee is released",
+    "$10,000 to a new payee is held for a second approval",
+    "$50,000 to a known payee is released",
+    "A payee known to another account is still new",
+    "Invalid amounts are rejected"
+   ],
+   "result": "PASSED",
+   "url": "evidence/sha256/e1d1ea4fb256…"
+  }
+ },
+ "line_13_cyclonedx": {
+  "_type": "https://in-toto.io/Statement/v1",
+  "subject": [
+   {
+    "digest": {
+     "sha256": "43b2c24b3e88…"
+    },
+    "name": "docs/wires.md"
+   },
+   "… same 4 subjects as line 1"
+  ],
+  "predicateType": "https://cyclonedx.org/bom",
+  "predicate": {
+   "bomFormat": "CycloneDX",
+   "components": [
+    {
+     "bom-ref": "pkg:generic/agents@46891e7e60da…",
+     "name": "wshobson/agents",
+     "purl": "pkg:generic/agents@46891e7e60da…",
+     "type": "library",
+     "version": "unknown"
+    },
+    {
+     "bom-ref": "pkg:generic/apmx-demo-factory@962df453559f…",
+     "name": "danielmeppiel/apmx-demo-factory",
+     "purl": "pkg:generic/apmx-demo-factory@962df453559f…",
+     "type": "library",
+     "version": "2.0.0"
+    }
+   ],
+   "metadata": {
+    "timestamp": "1970-01-01T00:00:00+00:00",
+    "tools": [
+     {
+      "name": "apm lock export",
+      "vendor": "APM"
+     }
+    ]
+   },
+   "specVersion": "1.5",
+   "version": 1
+  }
+ }
+}
